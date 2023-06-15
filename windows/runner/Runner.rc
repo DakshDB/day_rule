@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.dakshbhatia" "\0"
-            VALUE "FileDescription", "day_rule" "\0"
+            VALUE "FileDescription", "enhanced_you" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "day_rule" "\0"
+            VALUE "InternalName", "enhanced_you" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.dakshbhatia. All rights reserved." "\0"
-            VALUE "OriginalFilename", "day_rule.exe" "\0"
-            VALUE "ProductName", "day_rule" "\0"
+            VALUE "OriginalFilename", "enhanced_you.exe" "\0"
+            VALUE "ProductName", "enhanced_you" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

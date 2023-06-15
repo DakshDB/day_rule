@@ -1,4 +1,4 @@
-# day_rule
+# enhanced_you
 
 A new Flutter project.
 

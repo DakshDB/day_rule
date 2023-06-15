@@ -1,4 +1,6 @@
-import 'package:day_rule/widgets/button.dart';
+import 'package:enhanced_you/screens/journal/home.dart';
+import 'package:enhanced_you/screens/profile/profile.dart';
+import 'package:enhanced_you/widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -37,7 +39,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 28,
-                  fontWeight: FontWeight.w100,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ),
@@ -86,39 +88,29 @@ class _HomeState extends State<Home> {
                             width: 18,
                           ),
                           ButtonWidget(
-                            text: 'Just for Kids',
-                            onPressed: () {},
-                            icon: Icons.amp_stories_outlined,
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const JournalHome(),
+                                ),
+                              );
+                            },
+                            icon: Icons.menu_book_outlined,
                             height: 50,
-                          ),
-                          const SizedBox(
-                            width: 18,
-                          ),
-                          ButtonWidget(
-                            onPressed: () {},
-                            icon: Icons.play_arrow_outlined,
-                            width: 50,
-                            height: 50,
-
                           ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-
                           ButtonWidget(
-                            onPressed: () {},
-                            icon:
-                              Icons.brush_outlined,
-                            width: 50,
-                            height: 50,
-                          ),
-                          const SizedBox(
-                            width: 18,
-                          ),
-                          ButtonWidget(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const Profile(),
+                                ),
+                              );
+                            },
                             icon: Icons.person_outline,
                             width: 50,
                             height: 50,

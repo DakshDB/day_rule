@@ -42,12 +42,10 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         child: Padding(
           padding: EdgeInsets.all(widget.textPadding ?? 0.0),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (widget.icon != null) Container(
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.zero,
+                margin:  const EdgeInsets.fromLTRB(0, 0, 2,2),
                 width: 22,
                 height: 22,
                 child: Icon(

@@ -1,4 +1,4 @@
-package com.dakshbhatia.day_rule
+package com.dakshbhatia.enhanced_you
 
 import io.flutter.embedding.android.FlutterActivity
 
