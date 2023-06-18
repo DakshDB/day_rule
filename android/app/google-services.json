@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "111890981065",
+    "project_id": "enhanced-you",
+    "storage_bucket": "enhanced-you.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111890981065:android:1c8a054d2c06174b822d18",
+        "android_client_info": {
+          "package_name": "in.enhancedyou.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111890981065-oiik9gs02uq001jn4qvcpujus8753ddn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.enhancedyou.app",
+            "certificate_hash": "4723e15f6fffca3c0b8f5d4fc76b27fddc75dfe0"
+          }
+        },
+        {
+          "client_id": "111890981065-vuiicov0p2b0tahalau11c2j1ck82b7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI3mGsFxtk28e2xdEc-554gEFNP8aKdek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111890981065-vuiicov0p2b0tahalau11c2j1ck82b7m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "111890981065-0tp0vbukbg99kg72j6f1444bn0k6t76q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dakshbhatia.dayRule"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
