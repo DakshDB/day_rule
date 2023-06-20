@@ -1,42 +1,48 @@
+import 'package:enhanced_you/controllers/reminder_controller.dart';
 import 'package:enhanced_you/models/reminder.dart';
 import 'package:enhanced_you/screens/profile/settings/reminders/edit_reminder.dart';
 import 'package:enhanced_you/widgets/header.dart';
 import 'package:enhanced_you/widgets/reminder_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NotificationSettings extends StatefulWidget {
+class NotificationSettings extends ConsumerStatefulWidget {
   const NotificationSettings({super.key});
 
   @override
-  State<NotificationSettings> createState() => _NotificationSettingsState();
+  ConsumerState<NotificationSettings> createState() =>
+      _NotificationSettingsState();
 }
 
-class _NotificationSettingsState extends State<NotificationSettings> {
+class _NotificationSettingsState extends ConsumerState<NotificationSettings> {
+  List<Reminder> _reminders = [];
+  late ReminderController reminderController;
 
-  final List<Reminder> _reminders = [
-    Reminder(
-     id: 1, type: 'Daily', frequency: 5, startAt: DateTime.now(), endAt: DateTime.now(), repeatDays: [1,2,3,4,5,6,7],
-    ),
-    Reminder(
-      id: 2, type: 'Weekly', frequency: 5, startAt: DateTime.now(), endAt: DateTime.now(), repeatDays: [1,2,3,4,5,6,7],
-    ),
-    Reminder(
-      id: 3, type: 'Monthly', frequency: 5, startAt: DateTime.now(), endAt: DateTime.now(), repeatDays: [1,2,3,4,5,6,7],
-    ),
+  @override
+  void initState() {
+    super.initState();
+    reminderController = ref.read(reminderControllerProvider.notifier);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      refresh();
+    });
 
-  ];
+  }
+
+  void refresh() {
+    reminderController.getReminderList();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _reminders = ref.watch(reminderControllerProvider);
     return Scaffold(
-      body: ScrollConfiguration(
-        behavior: const ScrollBehavior().copyWith(overscroll: false),
-        child:  SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+        body: ScrollConfiguration(
+          behavior: const ScrollBehavior().copyWith(overscroll: false),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 const Header(title: 'Reminders'),
                 // Details about the page
                 Padding(
@@ -76,22 +82,27 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   shrinkWrap: true,
                   itemCount: _reminders.length,
                   itemBuilder: (context, index) {
-                    return ReminderTile(reminder: _reminders[index]);
+                    return ReminderTile(reminder: _reminders[index], reminderController: reminderController,);
                   },
                 ),
-              ]
+              ]),
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => EditReminder(reminder: Reminder(id: 1, type: '', frequency: 1, startAt: DateTime.now(), endAt: DateTime.now(), repeatDays: []),)));
-        },
-        child: const Icon(Icons.add),
-      )
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => EditReminder(
+                      reminder: Reminder(
+                          id: 1,
+                          type: '',
+                          frequency: 1,
+                          startAt: DateTime.now(),
+                          endAt: DateTime.now(),
+                          repeatDays: []),
+                    ))).then((value) => refresh());
+          },
+          child: const Icon(Icons.add),
+        ));
   }
-
 }

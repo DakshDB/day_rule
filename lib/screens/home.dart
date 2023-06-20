@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:enhanced_you/screens/journal/home.dart';
 import 'package:enhanced_you/screens/profile/profile.dart';
+import 'package:enhanced_you/services/notification_service.dart';
 import 'package:enhanced_you/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,6 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  NotificationService notificationService = NotificationService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +60,22 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // TODO: This is a test notification. Remove this.
+                        DateTime eventDate = DateTime.now().add(const Duration(seconds: 10));
+                        await notificationService.scheduleNotification(
+                          1,
+                          "Enhanced You",
+                          "Reminder for your scheduled event at ${DateFormat("h:mm a").format(eventDate)}",
+                          eventDate,
+                          jsonEncode({
+                            "title": "Enhanced You",
+                            "eventDate": DateFormat("EEEE, d MMM y").format(eventDate),
+                            "eventTime": DateFormat("h:mm a").format(eventDate),
+                          }),
+                            DateTimeComponents.time
+                        );
+                      },
                       icon: const Icon(
                         Icons.ios_share_outlined,
                         color: Colors.grey,
@@ -64,7 +86,20 @@ class _HomeState extends State<Home> {
                       width: 20,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // TODO: This is a test notification. Remove this.
+                        await notificationService.showNotification(
+                          0,
+                          "Enhanced You",
+                          "A new event has been created.",
+                          jsonEncode({
+                            "title": "Enhanced You",
+                            "eventDate": DateFormat("EEEE, d MMM y").format(
+                                DateTime.now().add(const Duration(days: 1))),
+                            "eventTime": "10:00 AM",
+                          }),
+                        );
+                      },
                       icon: const Icon(
                         Icons.favorite_border,
                         color: Colors.grey,
